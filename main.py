@@ -37,6 +37,26 @@ def getDataframe(dataset): # DataFrame
 
 # ---------------------------------------------------------------------------------------
 
+def createUnifiedDataframe():
+    dataframe = pd.concat([
+        getDataframe("pista1_ida_kb"),
+        getDataframe("pista1_ida_m"),
+        getDataframe("pista1_volta_kb"),
+        getDataframe("pista1_volta_m"),
+        getDataframe("pista2_ida_kb"),
+        getDataframe("pista2_ida_m"),
+        getDataframe("pista2_volta_kb"),
+        getDataframe("pista2_volta_m"),
+        getDataframe("pista_mix_ida_kb"),
+        getDataframe("pista_mix_ida_m"),
+        getDataframe("pista_mix_volta_kb"),
+        getDataframe("pista_mix_volta_m")
+    ], ignore_index=True)
+
+    return dataframe
+
+# ---------------------------------------------------------------------------------------
+
 def queryNumBins():
     return int(abs(ANG_MIN) + 1 + abs(ANG_MAX))
 
@@ -65,7 +85,10 @@ def selectData(dataframe, lim):
 
     arr = []
     for i in range(len(dataframe["angulo"])):
-        if(dataframe["angulo"][i] >= bins[cenBins] and dataframe["angulo"][i] <= bins[cenBins + 1]):
+        _ang = dataframe["angulo"][i]
+        _min = bins[cenBins]
+        _max = bins[cenBins + 1]
+        if(_ang >= _min and _ang <= _max):
             arr.append(i)
     seed = np.random.permutation(len(arr))
     arr = np.asarray(arr)
