@@ -223,7 +223,7 @@ def exec():
     )
 
     lim = 300
-    dataframe = getDataframe("pista2_volta_m")
+    dataframe = createUnifiedDataframe()
     selectData(dataframe, lim)
     imagens, angulos = parseDataframe(dataframe)
     xTrain, yTrain, xValid, yValid = prepareDataset(imagens, angulos)

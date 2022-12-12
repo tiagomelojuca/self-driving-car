@@ -1,8 +1,12 @@
 pandas
 numpy
 matplotlib
+
 opencv-python
 imgaug
 scikit-learn
 tensorflow
+
+flask
+eventlet
 python-socketio==4.2.1
